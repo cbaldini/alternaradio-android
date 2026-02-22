@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#272727</color>
+    <color name="colorAccent">#FF6B35</color>
+    <color name="colorPrimary">#272727</color>
+    <color name="colorPrimaryDark">#1a1a1a</color>
+    <string name="app_name">Alterna Radio</string>
+    <string name="error_loading">Error al cargar la página</string>
+    <string name="loading">Cargando...</string>
+    <string name="no_internet">No hay conexión a Internet</string>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">false</item>
+    </style>
+</resources>

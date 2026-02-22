@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alterna Radio</string>
+    <string name="loading">Cargando...</string>
+    <string name="no_internet">No hay conexión a Internet</string>
+    <string name="error_loading">Error al cargar la página</string>
+</resources>
+

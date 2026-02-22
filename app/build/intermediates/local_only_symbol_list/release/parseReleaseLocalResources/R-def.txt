@@ -1,0 +1,20 @@
+R_DEF: Internal format may change without notice
+local
+color background
+color colorAccent
+color colorPrimary
+color colorPrimaryDark
+id btnOpenBrowser
+id btnRetry
+id fallbackContainer
+id fallbackText
+id progressBar
+id webview
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string error_loading
+string loading
+string no_internet
+style AppTheme
