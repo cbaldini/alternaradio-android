@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "AlternaRadio";
 
-    private static final String HOME_URL = "https://alternaradio.ar";
+    private static final String HOME_URL = "https://radio.alterna.ar";
 
     private static final String NOTIF_CHANNEL_ID = "alternaradio_playback";
     private static final int NOTIF_ID = 1001;
