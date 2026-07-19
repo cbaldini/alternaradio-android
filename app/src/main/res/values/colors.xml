@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#272727</color>
-    <color name="colorPrimaryDark">#1a1a1a</color>
-    <color name="colorAccent">#FF6B35</color>
-    <color name="background">#272727</color>
+    <color name="colorPrimary">#1a1a1a</color>
+    <color name="colorPrimaryDark">#0a0a0a</color>
+    <color name="colorAccent">#3B4DA8</color>
+    <color name="background">#1a1a1a</color>
+
+    <!-- Vintage Radio Colors -->
+    <color name="radio_black">#0a0a0a</color>
+    <color name="radio_red">#3B4DA8</color>
+    <color name="radio_white">#FFFFFF</color>
+    <color name="radio_gray">#333333</color>
+    <color name="radio_light_gray">#555555</color>
+    <color name="dial_text">#3B4DA8</color>
+    <color name="dial_background">#1a1a1a</color>
+    <color name="speaker_text">#CCCCCC</color>
+
+    <!-- Alterna Radio Logo Colors -->
+    <color name="alterna_logo_blue">#3B4DA8</color>
+    <color name="alterna_logo_lilac">#6B5BA0</color>
+
+    <!-- LED Display Colors -->
+    <color name="led_green_bright">#00FF00</color>
+    <color name="led_green_dim">#00AA00</color>
 </resources>
 

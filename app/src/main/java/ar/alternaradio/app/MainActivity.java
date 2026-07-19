@@ -3,10 +3,12 @@ package ar.alternaradio.app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.widget.ImageView;
 import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -15,10 +17,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebChromeClient;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ProgressBar;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.FrameLayout;
+import ar.alternaradio.app.SevenSegmentView;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.content.Intent;
@@ -29,14 +33,29 @@ import android.webkit.SslErrorHandler;
 import android.net.http.SslError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceError;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
-    private ProgressBar progressBar;
-    private LinearLayout fallbackContainer;
-    private TextView fallbackText;
-    private Button btnRetry;
-    private Button btnOpenBrowser;
+    private SevenSegmentView frequencyDisplay;
+    private TextView nowPlayingTitle;
+    private Button btnDialLeft;
+    private Button btnDialRight;
+    private Button btnInfo;
+    private Button btnWeb;
+    private View dialNeedle;
+
+    // Variables para carousel y animaciones
+    private ViewPager2 imageCarousel;
+    private FrameLayout speakerContainer;
+    private EqualizerAnimator equalizerAnimator;
+    private List<View> eqBars;
+    private ImageCarouselAdapter carouselAdapter;
+    private List<String> carouselImages;
+    private SpeakerAnimationController speakerAnimator;
+    private boolean isCarouselVisible = true;
+    private int currentImageIndex = 0;
 
     private static final String TAG = "AlternaRadio";
 
@@ -52,12 +71,55 @@ public class MainActivity extends AppCompatActivity {
     private String lastSongTitle = null;
 
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
+
     private final Runnable loadTimeoutRunnable = new Runnable() {
         @Override
         public void run() {
             // Si a esta altura seguimos sin página finalizada, mostramos fallback.
             Log.w(TAG, "⚠ Timeout cargando WebView (pantalla negra posible)");
-            showFallback("No se pudo cargar la página. Tocá Reintentar o Abrir en el navegador.");
+            updateNowPlayingDisplay("Error cargando");
+        }
+    };
+
+    // Extracción periódica de canciones (ya no usamos Runnable manual)
+    // Se inicia en onCreate con NowPlayingExtractor.startPeriodicExtraction()
+
+    // Runnable para animar el parlante continuamente
+    private final Runnable animateSpeakerRunnable = new Runnable() {
+        private int animationPhase = 0;
+
+        @Override
+        public void run() {
+            if (speakerAnimator != null && isCarouselVisible && !isDestroyed() && !isFinishing()) {
+                switch (animationPhase % 4) {
+                    case 0:
+                        speakerAnimator.pulseBeat();
+                        break;
+                    case 1:
+                        speakerAnimator.openAndClose();
+                        break;
+                    case 2:
+                        speakerAnimator.rotateOnce();
+                        break;
+                    case 3:
+                        speakerAnimator.vibrate();
+                        break;
+                }
+                animationPhase++;
+            }
+            mainHandler.postDelayed(this, 1500); // Animar cada 1.5 segundos
+        }
+    };
+
+    // Runnable para auto-scroll del carousel
+    private final Runnable autoScrollCarouselRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (imageCarousel != null && isCarouselVisible && !carouselImages.isEmpty() && !isDestroyed() && !isFinishing()) {
+                int nextIndex = (currentImageIndex + 1) % carouselImages.size();
+                imageCarousel.setCurrentItem(nextIndex, true);
+            }
+            mainHandler.postDelayed(this, 5000); // Auto-scroll cada 5 segundos
         }
     };
 
@@ -74,13 +136,40 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             Log.d(TAG, "✓ Layout cargado");
 
+            // Obtener vistas
             webView = findViewById(R.id.webview);
-            progressBar = findViewById(R.id.progressBar);
-            fallbackContainer = findViewById(R.id.fallbackContainer);
-            fallbackText = findViewById(R.id.fallbackText);
-            btnRetry = findViewById(R.id.btnRetry);
-            btnOpenBrowser = findViewById(R.id.btnOpenBrowser);
-            Log.d(TAG, "✓ Vistas obtenidas");
+            nowPlayingTitle = findViewById(R.id.nowPlayingTitle);
+            frequencyDisplay = findViewById(R.id.frequencyDisplay);
+            if (frequencyDisplay != null) frequencyDisplay.setText("88.1");
+            btnDialLeft = findViewById(R.id.btnDialLeft);
+            btnDialRight = findViewById(R.id.btnDialRight);
+            btnInfo = findViewById(R.id.btnInfo);
+            btnWeb = findViewById(R.id.btnWeb);
+            dialNeedle = findViewById(R.id.dialNeedle);
+            imageCarousel = findViewById(R.id.imageCarousel);
+            speakerContainer = findViewById(R.id.speakerContainer);
+
+            // Inicializar ecualizador animado
+            eqBars = new ArrayList<>();
+            for (int i = 1; i <= 12; i++) {
+                int viewId = getResources().getIdentifier("eq" + i, "id", getPackageName());
+                View bar = findViewById(viewId);
+                if (bar != null) {
+                    eqBars.add(bar);
+                    Log.d(TAG, "✓ EQ bar " + i + " encontrado");
+                } else {
+                    Log.w(TAG, "✗ EQ bar " + i + " NO encontrado");
+                }
+            }
+            if (!eqBars.isEmpty()) {
+                equalizerAnimator = new EqualizerAnimator(eqBars);
+                Log.d(TAG, "✓ Ecualizador inicializado con " + eqBars.size() + " barras");
+                // Iniciar animación inmediatamente
+                equalizerAnimator.startAnimation();
+            } else {
+                Log.e(TAG, "✗ No se encontraron barras del ecualizador");
+            }
+
 
             if (webView == null) {
                 Log.e(TAG, "✗ WebView es null");
@@ -88,29 +177,127 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            if (btnRetry != null) {
-                btnRetry.setOnClickListener(v -> {
-                    Log.d(TAG, "→ Reintentar click");
-                    hasLoadedHome = false;
-                    pageFinishedOnce = false;
-                    hideFallback();
-                    webView.post(this::maybeLoadHome);
+            // Aplicar outline redondeado al speakerContainer para recortar la imagen
+            if (speakerContainer != null) {
+                speakerContainer.post(() -> {
+                    android.view.ViewOutlineProvider outlineProvider = new android.view.ViewOutlineProvider() {
+                        @Override
+                        public void getOutline(android.view.View view, android.graphics.Outline outline) {
+                            outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(),
+                                android.util.TypedValue.applyDimension(
+                                    android.util.TypedValue.COMPLEX_UNIT_DIP, 24,
+                                    getResources().getDisplayMetrics()
+                                )
+                            );
+                        }
+                    };
+                    speakerContainer.setOutlineProvider(outlineProvider);
+                    speakerContainer.setClipToOutline(true);
                 });
             }
-            if (btnOpenBrowser != null) {
-                btnOpenBrowser.setOnClickListener(v -> {
-                    Log.d(TAG, "→ Abrir en navegador click");
+
+            // Posicionar el dial needle después del 88 (aproximadamente 5-10% del ancho)
+            if (dialNeedle != null && dialNeedle.getParent() instanceof FrameLayout) {
+                FrameLayout parent = (FrameLayout) dialNeedle.getParent();
+
+                // Esperar a que el layout se haya renderizado
+                parent.post(() -> {
+                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) dialNeedle.getLayoutParams();
+                    if (params != null && parent.getWidth() > 0) {
+            // Posicionar el dial needle (80px más a la izquierda, aproximadamente 10% del ancho)
+                    params.leftMargin = (int) (parent.getWidth() * 0.10);
+                    params.gravity = Gravity.CENTER_VERTICAL | Gravity.LEFT;
+                        dialNeedle.setLayoutParams(params);
+                        Log.d(TAG, "✓ Dial needle posicionado al 75% - leftMargin: " + params.leftMargin);
+                    }
+                });
+            }
+
+            // Inicializar carousel
+            carouselImages = new ArrayList<>();
+            carouselAdapter = new ImageCarouselAdapter(this, carouselImages);
+            imageCarousel.setAdapter(carouselAdapter);
+
+            // Configurar carousel como vertical (de arriba hacia abajo)
+            imageCarousel.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+
+            // Callbacks del carousel
+            imageCarousel.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                    currentImageIndex = position;
+                    if (speakerAnimator != null) {
+                        speakerAnimator.complexBeatAnimation();
+                    }
+                    Log.d(TAG, "→ Carousel image: " + (position + 1) + "/" + carouselImages.size());
+                }
+            });
+
+            // Inicializar animador del parlante
+            speakerAnimator = new SpeakerAnimationController(speakerContainer);
+
+            // Botones de control
+            if (btnInfo != null) {
+                btnInfo.setOnClickListener(v -> {
+                    Log.d(TAG, "→ INFO click");
+                    if (!isCarouselVisible) {
+                        // Primera vez: extraer imágenes
+                        extractWebContent();
+                    }
+                    toggleCarousel();
+                });
+            }
+            if (btnWeb != null) {
+                btnWeb.setOnClickListener(v -> {
+                    Log.d(TAG, "→ WEB click");
                     openInBrowser(HOME_URL);
+                });
+            }
+            if (btnDialLeft != null) {
+                btnDialLeft.setOnClickListener(v -> {
+                    if (isCarouselVisible && currentImageIndex > 0) {
+                        imageCarousel.setCurrentItem(currentImageIndex - 1, true);
+                    }
+                });
+            }
+            if (btnDialRight != null) {
+                btnDialRight.setOnClickListener(v -> {
+                    if (isCarouselVisible && currentImageIndex < carouselImages.size() - 1) {
+                        imageCarousel.setCurrentItem(currentImageIndex + 1, true);
+                    }
                 });
             }
 
             configureWebView();
-
-            // Mostrar algo siempre, para evitar negro “silencioso”.
-            showFallback("Cargando...");
-
-            // Cargar la URL de forma segura en el loop del UI thread, evitando carreras con el lifecycle.
             webView.post(this::maybeLoadHome);
+
+            // Iniciar extracción periódica de canciones (se mantiene fijo)
+            mainHandler.postDelayed(() -> {
+                NowPlayingExtractor.startPeriodicExtraction(webView, new NowPlayingExtractor.NowPlayingCallback() {
+                    @Override
+                    public void onSongExtracted(String songTitle) {
+                        lastSongTitle = songTitle;
+                        updateNowPlayingDisplay(songTitle);
+
+                        // Iniciar animación del ecualizador cuando se extrae canción
+                        if (equalizerAnimator != null && !equalizerAnimator.isAnimating()) {
+                            equalizerAnimator.startAnimation();
+                        }
+                    }
+
+                    @Override
+                    public void onExtractionFailed(String error) {
+                        Log.w(TAG, "⚠ Error extrayendo canción: " + error);
+                    }
+                });
+            }, 2000);
+
+            // Iniciar animación del parlante
+            mainHandler.post(animateSpeakerRunnable);
+
+            // Iniciar auto-scroll del carousel
+            mainHandler.post(autoScrollCarouselRunnable);
 
         } catch (Exception e) {
             Log.e(TAG, "✗ ERROR: " + e.getClass().getSimpleName() + " - " + e.getMessage(), e);
@@ -139,12 +326,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "→ Página inicia: " + url);
 
                 if (!pageFinishedOnce) {
-                    showFallback("Cargando...");
-                }
-
-                if (progressBar != null) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    progressBar.setProgress(10);
+                    updateNowPlayingDisplay("Cargando...");
                 }
             }
 
@@ -158,23 +340,14 @@ public class MainActivity extends AppCompatActivity {
                     String t = view.getTitle();
                     if (t != null && !t.trim().isEmpty()) {
                         lastPageTitle = t.trim();
-                        // Si no tenemos título de canción de otro lado, usamos el mismo.
-                        if (lastSongTitle == null || lastSongTitle.trim().isEmpty()) {
-                            lastSongTitle = lastPageTitle;
-                        }
-                        Log.d(TAG, "→ Título (onPageFinished): " + lastPageTitle);
+                        Log.d(TAG, "→ Título página (onPageFinished): " + lastPageTitle);
+                        // NO actualizar nowPlayingTitle - NowPlayingExtractor lo hace correctamente
                     }
                 } catch (Throwable ignored) {
                     // noop
                 }
 
                 Log.d(TAG, "✓ Página cargada: " + url);
-
-                hideFallback();
-
-                if (progressBar != null) {
-                    progressBar.setVisibility(View.GONE);
-                }
 
                 // Si terminó, cancelamos timeout.
                 mainHandler.removeCallbacks(loadTimeoutRunnable);
@@ -186,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
                 if (request != null && request.isForMainFrame()) {
                     CharSequence desc = (error != null) ? error.getDescription() : "Error desconocido";
                     Log.e(TAG, "✗ Error WebView (main frame): " + desc);
-                    showFallback("Error al cargar. Verificá tu conexión y reintentá.");
+                    updateNowPlayingDisplay("Error de conexión");
                 }
             }
 
@@ -195,16 +368,16 @@ public class MainActivity extends AppCompatActivity {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
                 Log.e(TAG, "✗ Error WebView: " + description + " (" + errorCode + ") url=" + failingUrl);
-                showFallback("Error al cargar. Verificá tu conexión y reintentá.");
+                updateNowPlayingDisplay("Error de conexión");
             }
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                // IMPORTANTE: no bypass. Mostramos fallback para evitar negro.
+                // IMPORTANTE: no bypass. Mostramos error para evitar negro.
                 String msg = (error != null) ? error.toString() : "SSL error";
                 Log.e(TAG, "✗ SSL Error: " + msg);
                 if (handler != null) handler.cancel();
-                showFallback("Problema de seguridad (SSL) al cargar la página. Abrí en el navegador.");
+                updateNowPlayingDisplay("Error de seguridad SSL");
             }
 
             @Override
@@ -233,27 +406,12 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                if (progressBar != null) {
-                    progressBar.setProgress(newProgress);
-                    if (newProgress >= 100) {
-                        progressBar.setVisibility(View.GONE);
-                    } else {
-                        progressBar.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-
-            @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
                 if (title != null && !title.trim().isEmpty()) {
                     lastPageTitle = title.trim();
-                    // Por ahora usamos el mismo title como canción (hasta que tengamos un selector más específico)
-                    if (lastSongTitle == null || lastSongTitle.trim().isEmpty()) {
-                        lastSongTitle = lastPageTitle;
-                    }
-                    Log.d(TAG, "→ Título (onReceivedTitle): " + lastPageTitle);
+                    Log.d(TAG, "→ Título página: " + lastPageTitle);
+                    // NO actualizar nowPlayingTitle aquí - NowPlayingExtractor lo hace correctamente
                 }
             }
         });
@@ -285,14 +443,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "✓ URL solicitada");
     }
 
-    private void showFallback(String message) {
-        if (fallbackText != null) fallbackText.setText(message);
-        if (fallbackContainer != null) fallbackContainer.setVisibility(View.VISIBLE);
-        if (webView != null) webView.setVisibility(View.VISIBLE); // mantenemos WebView debajo
-    }
-
-    private void hideFallback() {
-        if (fallbackContainer != null) fallbackContainer.setVisibility(View.GONE);
+    private void updateNowPlayingDisplay(String text) {
+        if (nowPlayingTitle != null) {
+            nowPlayingTitle.setText(text);
+        }
     }
 
     private void openInBrowser(String url) {
@@ -336,20 +490,12 @@ public class MainActivity extends AppCompatActivity {
             // noop
         }
 
-        String song = (lastSongTitle != null && !lastSongTitle.trim().isEmpty()) ? lastSongTitle.trim() : null;
-        String page = (lastPageTitle != null && !lastPageTitle.trim().isEmpty()) ? lastPageTitle.trim() : null;
+        String song = (lastSongTitle != null && !lastSongTitle.trim().isEmpty()) ? lastSongTitle.trim() : "Alterna Radio";
+        String page = (lastPageTitle != null && !lastPageTitle.trim().isEmpty()) ? lastPageTitle.trim() : HOME_URL;
 
-        // Formato: "Canción | Página" (sin "Suena ahora")
-        String title;
-        if (song != null && page != null) {
-            title = song + " | " + page;
-        } else if (song != null) {
-            title = song;
-        } else if (page != null) {
-            title = page;
-        } else {
-            title = "Alterna Radio";
-        }
+        // Mostrar el título de la canción como contenido principal
+        String notificationTitle = "🎵 AHORA SUENA";
+        String notificationContent = song;
 
         Intent openIntent = new Intent(this, MainActivity.class);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -365,15 +511,16 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIF_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(HOME_URL)
+                .setContentTitle(notificationTitle)
+                .setContentText(notificationContent)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(notificationContent))
                 .setContentIntent(pendingIntent)
                 .setOngoing(false)
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW);
 
         NotificationManagerCompat.from(this).notify(NOTIF_ID, builder.build());
-        Log.d(TAG, "✓ Notificación publicada: " + title);
+        Log.d(TAG, "✓ Notificación publicada: " + notificationTitle + " - " + notificationContent);
     }
 
     private void cancelNowPlayingNotification() {
@@ -420,8 +567,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "→ onPause");
-        if (webView != null) webView.onPause();
+        Log.d(TAG, "→ onPause (pantalla apagada, sonido continúa)");
+        // NO pausar WebView para que el sonido siga reproduciéndose
         super.onPause();
     }
 
@@ -436,7 +583,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.d(TAG, "→ onDestroy");
 
+        // Detener extracción periódica
+        NowPlayingExtractor.stopPeriodicExtraction();
+
+        // Limpiar todos los Runnables
         mainHandler.removeCallbacks(loadTimeoutRunnable);
+        mainHandler.removeCallbacks(animateSpeakerRunnable);
+        mainHandler.removeCallbacks(autoScrollCarouselRunnable);
 
         if (webView != null) {
             try {
@@ -453,5 +606,59 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         super.onDestroy();
+    }
+
+    private void extractWebContent() {
+        // Extraer imágenes desde la web
+        Log.d(TAG, "→ extractWebContent: Extrayendo imágenes...");
+        WebImageExtractor.extractImages(webView, new WebImageExtractor.ImageExtractionCallback() {
+            @Override
+            public void onImagesExtracted(List<String> imageUrls) {
+                Log.d(TAG, "✓ Imágenes extraídas: " + imageUrls.size());
+                if (!imageUrls.isEmpty()) {
+                    carouselAdapter.updateImages(imageUrls);
+                    currentImageIndex = 0;
+                    if (imageCarousel != null) {
+                        imageCarousel.setCurrentItem(0, false);
+                    }
+                }
+            }
+
+            @Override
+            public void onExtractionFailed(String error) {
+                Log.w(TAG, "⚠ Error extrayendo imágenes: " + error);
+            }
+        });
+    }
+
+    private void toggleCarousel() {
+        isCarouselVisible = !isCarouselVisible;
+
+        android.widget.ImageView textureOverlay = findViewById(R.id.speakerTextureOverlay);
+
+        if (isCarouselVisible) {
+            // Abrir: deslizar textura hacia arriba y desaparecer
+            if (textureOverlay != null) {
+                textureOverlay.animate()
+                        .translationY(-textureOverlay.getHeight())
+                        .alpha(0f)
+                        .setDuration(400)
+                        .withEndAction(() -> textureOverlay.setVisibility(View.GONE))
+                        .start();
+            }
+        } else {
+            // Cerrar: volver la textura desde arriba
+            if (textureOverlay != null) {
+                textureOverlay.setVisibility(View.VISIBLE);
+                textureOverlay.setTranslationY(-textureOverlay.getHeight());
+                textureOverlay.setAlpha(0f);
+                textureOverlay.animate()
+                        .translationY(0f)
+                        .alpha(1f)
+                        .setDuration(400)
+                        .start();
+            }
+        }
+        Log.d(TAG, "→ Carousel " + (isCarouselVisible ? "mostrado" : "oculto"));
     }
 }

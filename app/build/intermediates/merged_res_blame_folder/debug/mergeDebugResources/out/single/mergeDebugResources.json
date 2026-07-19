@@ -1,0 +1,142 @@
+[
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_led_display.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/led_display.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_speaker_mesh_pattern.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/speaker_mesh_pattern.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/anim_fade_out.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/anim/fade_out.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_dial_background.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/dial_background.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/anim_speaker_rotate_back.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/anim/speaker_rotate_back.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_button_dark.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/button_dark.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_logoradioplano.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/logoradioplano.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_dial_display.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/dial_display.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_speaker_area.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/speaker_area.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_knob_background.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/knob_background.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_textura_parlante.jpg.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/textura_parlante.jpg"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_needle.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/needle.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_radio_body.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/radio_body.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_radio_vintage.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/radio_vintage.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_speaker_dot.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/speaker_dot.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_button_red.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/button_red.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/anim_speaker_rotate.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/anim/speaker_rotate.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_knob_button.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/knob_button.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_led_text_style.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/led_text_style.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/layout_activity_main.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_speaker_background.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/speaker_background.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/anim_fade_in.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/anim/fade_in.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "ar.alternaradio.app-debug-32:/layout_activity_main.xml.flat",
+        "source": "ar.alternaradio.app-main-34:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_dial_marks.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/dial_marks.xml"
+    },
+    {
+        "merged": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-debug-32:/drawable_radio_vintage_body.xml.flat",
+        "source": "/Users/cristianbaldini/.gradle/daemon/9.0.0/ar.alternaradio.app-main-34:/drawable/radio_vintage_body.xml"
+    }
+]

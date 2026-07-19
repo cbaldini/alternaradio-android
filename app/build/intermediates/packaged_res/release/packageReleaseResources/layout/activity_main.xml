@@ -1,55 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#272727">
+    android:background="#000000"
+    android:fillViewport="true">
 
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_alignParentTop="true"
-        android:progressTint="#FF6B35"
-        android:visibility="gone" />
-
-    <!-- Fallback UI si WebView queda en negro / no carga -->
+    <!-- Cuerpo principal de la radio -->
     <LinearLayout
-        android:id="@+id/fallbackContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp"
-        android:background="#272727"
-        android:visibility="gone">
+        android:gravity="center_horizontal"
+        android:background="@drawable/radio_vintage_body"
+        android:paddingTop="16dp"
+        android:paddingBottom="0dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
 
+        <!-- ===== CABECERA STEREO ===== -->
         <TextView
-            android:id="@+id/fallbackText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cargando..."
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+            android:text="— STEREO —"
+            android:textColor="@color/radio_red"
+            android:textSize="12sp"
+            android:letterSpacing="0.2"
+            android:gravity="center"
+            android:layout_marginBottom="10dp" />
 
-        <Button
-            android:id="@+id/btnRetry"
-            android:layout_width="wrap_content"
+        <!-- ===== DISPLAY FRECUENCIA (pantalla LED) ===== -->
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reintentar"
-            android:layout_marginBottom="12dp" />
+            android:background="@drawable/led_display"
+            android:paddingTop="12dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="0dp">
 
-        <Button
-            android:id="@+id/btnOpenBrowser"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Fila FM | 88.1 | MHz + STEREO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="FM"
+                        android:textColor="#3B4DA8"
+                        android:textSize="18sp"
+                        android:fontFamily="monospace"
+                        android:gravity="start|center_vertical"
+                        android:shadowColor="#3B4DA8"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="8" />
+
+                    <ar.alternaradio.app.SevenSegmentView
+                        android:id="@+id/frequencyDisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="72dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="end|center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MHz"
+                            android:textColor="#3B4DA8"
+                            android:textSize="18sp"
+                            android:layout_gravity="end"
+                            android:shadowColor="#3B4DA8"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="6" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="4dp">
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:background="#FF0000"
+                                android:layout_marginEnd="4dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="STEREO"
+                                android:textColor="#3B4DA8"
+                                android:textSize="9sp"
+                                android:letterSpacing="0.1" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Escala de frecuencias con flechas -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="6dp">
+
+                    <Button
+                        android:id="@+id/btnDialLeft"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:text="‹"
+                        android:textColor="@color/radio_white"
+                        android:background="@drawable/button_red"
+                        android:textSize="16sp"
+                        android:padding="0dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="#555555" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="88" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="90" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="92" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="94" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="96" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="98" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="100" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="102" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="104" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="106" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="108" android:textColor="#666666" android:textSize="16sp" android:gravity="center" android:fontFamily="monospace" />
+                        </LinearLayout>
+
+                        <!-- Aguja roja -->
+                        <View
+                            android:id="@+id/dialNeedle"
+                            android:layout_width="2dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:background="#FF0000" />
+                    </FrameLayout>
+
+                    <Button
+                        android:id="@+id/btnDialRight"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:text="›"
+                        android:textColor="@color/radio_white"
+                        android:background="@drawable/button_red"
+                        android:textSize="16sp"
+                        android:padding="0dp"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- ===== PANEL INFO CANCIÓN (tipo RDS) ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Abrir en el navegador" />
+            android:orientation="vertical"
+            android:background="#0a0f00"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="▶  AHORA SUENA"
+                    android:textColor="@color/radio_red"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.05" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" RDS "
+                    android:textColor="#555555"
+                    android:textSize="9sp"
+                    android:background="@drawable/button_dark"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp" />
+            </LinearLayout>
+
+            <ar.alternaradio.app.LEDTextView
+                android:id="@+id/nowPlayingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ALTERNARADIO"
+                android:textColor="@color/radio_white"
+                android:textSize="16sp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginBottom="6dp"
+                android:letterSpacing="0.05" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#3B4DA8"
+                android:layout_marginBottom="6dp" />
+
+            <!-- Barras de ecualizador -->
+            <LinearLayout
+                android:id="@+id/eqBars"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                android:layout_gravity="center_horizontal">
+                <View android:id="@+id/eq1"  android:layout_width="4dp" android:layout_height="6dp"  android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq2"  android:layout_width="4dp" android:layout_height="10dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq3"  android:layout_width="4dp" android:layout_height="16dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq4"  android:layout_width="4dp" android:layout_height="12dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq5"  android:layout_width="4dp" android:layout_height="8dp"  android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq6"  android:layout_width="4dp" android:layout_height="14dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq7"  android:layout_width="4dp" android:layout_height="10dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq8"  android:layout_width="4dp" android:layout_height="18dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq9"  android:layout_width="4dp" android:layout_height="12dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq10" android:layout_width="4dp" android:layout_height="8dp"  android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq11" android:layout_width="4dp" android:layout_height="14dp" android:background="@color/radio_red" android:layout_marginEnd="3dp" />
+                <View android:id="@+id/eq12" android:layout_width="4dp" android:layout_height="10dp" android:background="@color/radio_red" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== CONTROLES: LOGO + INFO + WEB ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <!-- Logo ALTERNA RADIO - Izquierda, Grande -->
+            <ImageView
+                android:id="@+id/logoImageView"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:src="@drawable/logoradioplano"
+                android:scaleType="fitCenter"
+                android:contentDescription="Alterna Radio Logo" />
+
+            <!-- Botones INFO y WEB - Derecha, Verticales -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingStart="8dp">
+
+                <Button
+                    android:id="@+id/btnInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="INFO"
+                    android:textColor="@color/radio_white"
+                    android:background="@drawable/button_dark"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="6dp"
+                    android:minHeight="0dp" />
+
+                <Button
+                    android:id="@+id/btnWeb"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="WEB"
+                    android:textColor="@color/radio_white"
+                    android:background="@drawable/button_dark"
+                    android:textSize="11sp"
+                    android:minHeight="0dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== PARLANTE / SPEAKER MESH (OCULTO) + CAROUSEL IMÁGENES ===== -->
+        <FrameLayout
+            android:id="@+id/speakerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="378dp"
+            android:background="#111111"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:clipToOutline="true">
+
+            <!-- ViewPager2 para carousel vertical (debajo) -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imageCarousel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible" />
+
+            <!-- Capa de textura del parlante encima (se animará hacia arriba al abrir) -->
+            <ImageView
+                android:id="@+id/speakerTextureOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/textura_parlante"
+                android:scaleType="centerCrop" />
+
+        </FrameLayout>
+
+        <!-- WEBVIEW OCULTO -->
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
 
     </LinearLayout>
-</RelativeLayout>
+</ScrollView>

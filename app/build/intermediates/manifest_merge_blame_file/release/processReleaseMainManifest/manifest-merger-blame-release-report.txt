@@ -9,17 +9,17 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:4:5-67
-11-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:4:22-64
+11-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:4:5-67
+11-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:4:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:5:5-79
-12-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:5:22-76
+12-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:5:5-79
+12-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:5:22-76
 13    <uses-permission android:name="android.permission.WAKE_LOCK" />
-13-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:6:5-68
-13-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:6:22-65
+13-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:6:5-68
+13-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:6:22-65
 14    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-14-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:7:5-77
-14-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:7:22-74
+14-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:7:5-77
+14-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:7:22-74
 15
 16    <permission
 16-->[androidx.core:core:1.9.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/0bb87d37fba78a0adb42052df7e3da3f/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
@@ -33,65 +33,65 @@
 20-->[androidx.core:core:1.9.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/0bb87d37fba78a0adb42052df7e3da3f/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
 21
 22    <application
-22-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:9:5-35:19
+22-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:9:5-35:19
 23        android:allowBackup="true"
-23-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:10:9-35
+23-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:10:9-35
 24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 24-->[androidx.core:core:1.9.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/0bb87d37fba78a0adb42052df7e3da3f/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 25        android:extractNativeLibs="true"
 26        android:hardwareAccelerated="true"
-26-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:16:9-43
+26-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:16:9-43
 27        android:icon="@mipmap/ic_launcher"
-27-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:11:9-43
+27-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:11:9-43
 28        android:label="@string/app_name"
-28-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:12:9-41
+28-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:12:9-41
 29        android:roundIcon="@mipmap/ic_launcher_round"
-29-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:13:9-54
+29-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:13:9-54
 30        android:supportsRtl="true"
-30-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:14:9-35
+30-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:14:9-35
 31        android:theme="@style/AppTheme"
-31-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:17:9-40
+31-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:17:9-40
 32        android:usesCleartextTraffic="true" >
-32-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:15:9-44
+32-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:15:9-44
 33        <activity
-33-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:19:9-34:20
+33-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:19:9-34:20
 34            android:name="ar.alternaradio.app.MainActivity"
-34-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:20:13-41
+34-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:20:13-41
 35            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-35-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:21:13-83
+35-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:21:13-83
 36            android:exported="true"
-36-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:22:13-36
+36-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:22:13-36
 37            android:launchMode="singleTask" >
-37-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:23:13-44
+37-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:23:13-44
 38            <intent-filter>
-38-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:24:13-27:29
+38-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:24:13-27:29
 39                <action android:name="android.intent.action.MAIN" />
-39-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:17-69
-39-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:25-66
+39-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:17-69
+39-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:25-66
 40
 41                <category android:name="android.intent.category.LAUNCHER" />
-41-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:17-77
-41-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:27-74
+41-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:17-77
+41-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:27-74
 42            </intent-filter>
 43            <intent-filter>
-43-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:28:13-33:29
+43-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:28:13-33:29
 44                <action android:name="android.intent.action.VIEW" />
-44-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:29:17-69
-44-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:29:25-66
+44-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:29:17-69
+44-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:29:25-66
 45
 46                <category android:name="android.intent.category.DEFAULT" />
-46-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:17-76
-46-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:27-73
+46-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:17-76
+46-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:27-73
 47                <category android:name="android.intent.category.BROWSABLE" />
-47-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:17-78
-47-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:27-75
+47-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:17-78
+47-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:27-75
 48
 49                <data
-49-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:17-79
-50                    android:host="alternaradio.ar"
-50-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:46-76
+49-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:17-80
+50                    android:host="radio.alterna.ar"
+50-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:46-77
 51                    android:scheme="https" />
-51-->/Users/cristianbaldini/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:23-45
+51-->/Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:23-45
 52            </intent-filter>
 53        </activity>
 54

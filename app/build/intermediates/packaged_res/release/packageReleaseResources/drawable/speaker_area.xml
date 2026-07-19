@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Imagen de textura con inset para respetar esquinas -->
+    <item android:insetLeft="0dp" android:insetRight="0dp" android:insetTop="0dp" android:insetBottom="0dp">
+        <bitmap
+            android:src="@drawable/textura_parlante"
+            android:gravity="fill" />
+    </item>
+
+    <!-- Borde y esquinas redondeadas -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="24dp" />
+            <stroke
+                android:width="3dp"
+                android:color="#3a3a3a" />
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+</layer-list>
+

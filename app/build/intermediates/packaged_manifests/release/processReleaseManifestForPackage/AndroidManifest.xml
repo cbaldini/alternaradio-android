@@ -47,7 +47,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="alternaradio.ar"
+                    android:host="radio.alterna.ar"
                     android:scheme="https" />
             </intent-filter>
         </activity>

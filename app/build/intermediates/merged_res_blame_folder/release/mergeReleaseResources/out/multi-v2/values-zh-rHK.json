@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "ar.alternaradio.app-mergeReleaseResources-29:/values-zh-rHK/values-zh-rHK.xml",
+            "outputFile": "ar.alternaradio.app-mergeReleaseResources-30:/values-zh-rHK/values-zh-rHK.xml",
             "map": [
                 {
                     "source": "/Users/cristianbaldini/.gradle/caches/9.0.0/transforms/0bb87d37fba78a0adb42052df7e3da3f/transformed/core-1.9.0/res/values-zh-rHK/values-zh-rHK.xml",

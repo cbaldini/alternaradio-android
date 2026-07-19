@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo base oscuro -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="12dp" />
+            <gradient
+                android:type="linear"
+                android:angle="45"
+                android:startColor="#2a2a2a"
+                android:centerColor="#1f1f1f"
+                android:endColor="#141414" />
+        </shape>
+    </item>
+
+    <!-- Textura de relieve -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="12dp" />
+            <gradient
+                android:type="radial"
+                android:gradientRadius="60%"
+                android:startColor="#1a1a1a"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Borde redondeado -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="12dp" />
+            <stroke
+                android:width="3dp"
+                android:color="#3a3a3a" />
+        </shape>
+    </item>
+</layer-list>
+

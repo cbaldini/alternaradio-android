@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "ar.alternaradio.app-mergeReleaseResources-29:/values-az/values-az.xml",
+            "outputFile": "ar.alternaradio.app-mergeReleaseResources-30:/values-az/values-az.xml",
             "map": [
                 {
                     "source": "/Users/cristianbaldini/.gradle/caches/9.0.0/transforms/5eea7df6aee6a0941665cadf5103cadf/transformed/material-1.11.0/res/values-az/values-az.xml",
