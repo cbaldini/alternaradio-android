@@ -205,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
                     FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) dialNeedle.getLayoutParams();
                     if (params != null && parent.getWidth() > 0) {
             // Posicionar el dial needle (80px más a la izquierda, aproximadamente 10% del ancho)
-                    params.leftMargin = (int) (parent.getWidth() * 0.10);
+                    int offset5dp = (int) (7 * getResources().getDisplayMetrics().density);
+                    params.leftMargin = (int) (parent.getWidth() * 0.10) - offset5dp;
                     params.gravity = Gravity.CENTER_VERTICAL | Gravity.LEFT;
                         dialNeedle.setLayoutParams(params);
                         Log.d(TAG, "✓ Dial needle posicionado al 75% - leftMargin: " + params.leftMargin);
@@ -272,9 +273,8 @@ public class MainActivity extends AppCompatActivity {
             configureWebView();
             webView.post(this::maybeLoadHome);
 
-            // Iniciar extracción periódica de canciones (se mantiene fijo)
-            mainHandler.postDelayed(() -> {
-                NowPlayingExtractor.startPeriodicExtraction(webView, new NowPlayingExtractor.NowPlayingCallback() {
+            // Iniciar extracción periódica de canciones inmediatamente (sin demora)
+            NowPlayingExtractor.startPeriodicExtraction(webView, new NowPlayingExtractor.NowPlayingCallback() {
                     @Override
                     public void onSongExtracted(String songTitle) {
                         lastSongTitle = songTitle;
@@ -291,7 +291,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.w(TAG, "⚠ Error extrayendo canción: " + error);
                     }
                 });
-            }, 2000);
 
             // Iniciar animación del parlante
             mainHandler.post(animateSpeakerRunnable);
@@ -636,8 +635,8 @@ public class MainActivity extends AppCompatActivity {
 
         android.widget.ImageView textureOverlay = findViewById(R.id.speakerTextureOverlay);
 
-        if (isCarouselVisible) {
-            // Abrir: deslizar textura hacia arriba y desaparecer
+        if (!isCarouselVisible) {
+            // Cerrar: deslizar textura hacia arriba y desaparecer
             if (textureOverlay != null) {
                 textureOverlay.animate()
                         .translationY(-textureOverlay.getHeight())
@@ -647,7 +646,7 @@ public class MainActivity extends AppCompatActivity {
                         .start();
             }
         } else {
-            // Cerrar: volver la textura desde arriba
+            // Abrir: volver la textura desde arriba
             if (textureOverlay != null) {
                 textureOverlay.setVisibility(View.VISIBLE);
                 textureOverlay.setTranslationY(-textureOverlay.getHeight());
