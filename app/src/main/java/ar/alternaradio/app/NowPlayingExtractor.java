@@ -126,10 +126,15 @@ public class NowPlayingExtractor {
                 // Intento 3: document.title pero SOLO tomando la parte antes del primer | o -
                 "  if (!result || result.length < 2) {" +
                 "    var t = document.title || '';" +
-                "    if (t.indexOf(' | ') > -1) t = t.split(' | ')[0].trim();" +
-                "    else if (t.indexOf(' - ') > -1) t = t.split(' - ')[0].trim();" +
-                "    else if (t.indexOf(' | ') > -1) t = t.split('|')[0].trim();" +
-                "    result = t;" +
+                "    if (t && t.length > 2 && t.length < 200) {" +
+                "      if (t.indexOf(' | ') > -1) t = t.split(' | ')[0].trim();" +
+                "      else if (t.indexOf(' - ') > -1) t = t.split(' - ')[0].trim();" +
+                "      else if (t.indexOf('|') > -1) t = t.split('|')[0].trim();" +
+                "      else if (t.indexOf('-') > -1) t = t.split('-')[0].trim();" +
+                "      if (t && t.length > 2 && t.length < 200) {" +
+                "        result = t;" +
+                "      }" +
+                "    }" +
                 "  }" +
 
                 "  return result ? result.trim() : '';" +

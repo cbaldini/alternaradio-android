@@ -169,6 +169,7 @@
                             android:layout_width="2dp"
                             android:layout_height="26dp"
                             android:layout_gravity="center_vertical|center_horizontal"
+                            android:layout_marginLeft="-5dp"
                             android:background="#FF0000" />
                     </FrameLayout>
 

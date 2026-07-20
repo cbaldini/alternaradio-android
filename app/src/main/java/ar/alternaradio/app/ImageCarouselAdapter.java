@@ -1,13 +1,18 @@
 package ar.alternaradio.app;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import java.util.List;
 
 public class ImageCarouselAdapter extends RecyclerView.Adapter<ImageCarouselAdapter.ImageViewHolder> {
@@ -22,23 +27,88 @@ public class ImageCarouselAdapter extends RecyclerView.Adapter<ImageCarouselAdap
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ImageView imageView = new ImageView(context);
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(
+        // Contenedor que muestra la imagen anterior (blureada), la principal y la siguiente (blureada)
+        LinearLayout container = new LinearLayout(context);
+        container.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         ));
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        return new ImageViewHolder(imageView);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setBackgroundColor(0xFF000000);
+
+        // ImageView para la imagen anterior (blureada, small)
+        ImageView prevImage = new ImageView(context);
+        prevImage.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                0.2f  // 20% del alto
+        ));
+        prevImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        prevImage.setAlpha(0.4f);
+        container.addView(prevImage);
+
+        // ImageView para la imagen principal (grande)
+        ImageView mainImage = new ImageView(context);
+        mainImage.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                0.6f  // 60% del alto
+        ));
+        mainImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        container.addView(mainImage);
+
+        // ImageView para la imagen siguiente (blureada, small)
+        ImageView nextImage = new ImageView(context);
+        nextImage.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                0.2f  // 20% del alto
+        ));
+        nextImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        nextImage.setAlpha(0.4f);
+        container.addView(nextImage);
+
+        return new ImageViewHolder(container, mainImage, prevImage, nextImage);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        String imageUrl = imageUrls.get(position);
+        String currentUrl = imageUrls.get(position);
+        String prevUrl = position > 0 ? imageUrls.get(position - 1) : null;
+        String nextUrl = position < imageUrls.size() - 1 ? imageUrls.get(position + 1) : null;
+
+        // Cargar imagen actual (sin blur, tamaño completo)
         Glide.with(context)
-                .load(imageUrl)
-                .centerCrop()
+                .load(currentUrl)
+                .centerInside()
                 .dontTransform()
-                .into(holder.imageView);
+                .into(holder.mainImageView);
+
+        // Cargar imagen anterior (con blur)
+        if (prevUrl != null) {
+            Glide.with(context)
+                    .load(prevUrl)
+                    .transform(new MultiTransformation<>(
+                            new CenterInside(),
+                            new BlurTransformation(25)
+                    ))
+                    .into(holder.prevImageView);
+        } else {
+            holder.prevImageView.setImageDrawable(null);
+        }
+
+        // Cargar imagen siguiente (con blur)
+        if (nextUrl != null) {
+            Glide.with(context)
+                    .load(nextUrl)
+                    .transform(new MultiTransformation<>(
+                            new CenterInside(),
+                            new BlurTransformation(25)
+                    ))
+                    .into(holder.nextImageView);
+        } else {
+            holder.nextImageView.setImageDrawable(null);
+        }
     }
 
     @Override
@@ -53,11 +123,15 @@ public class ImageCarouselAdapter extends RecyclerView.Adapter<ImageCarouselAdap
     }
 
     static class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView mainImageView;
+        ImageView prevImageView;
+        ImageView nextImageView;
 
-        ImageViewHolder(ImageView imageView) {
-            super(imageView);
-            this.imageView = imageView;
+        ImageViewHolder(View container, ImageView mainImage, ImageView prevImage, ImageView nextImage) {
+            super(container);
+            this.mainImageView = mainImage;
+            this.prevImageView = prevImage;
+            this.nextImageView = nextImage;
         }
     }
 }
