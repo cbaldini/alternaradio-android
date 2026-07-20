@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageCarouselAdapter carouselAdapter;
     private List<String> carouselImages;
     private SpeakerAnimationController speakerAnimator;
-    private boolean isCarouselVisible = true;
+    private boolean isCarouselVisible = false;
     private int currentImageIndex = 0;
 
     private static final String TAG = "AlternaRadio";
@@ -273,24 +273,6 @@ public class MainActivity extends AppCompatActivity {
             configureWebView();
             webView.post(this::maybeLoadHome);
 
-            // Iniciar extracción periódica de canciones inmediatamente (sin demora)
-            NowPlayingExtractor.startPeriodicExtraction(webView, new NowPlayingExtractor.NowPlayingCallback() {
-                    @Override
-                    public void onSongExtracted(String songTitle) {
-                        lastSongTitle = songTitle;
-                        updateNowPlayingDisplay(songTitle);
-
-                        // Iniciar animación del ecualizador cuando se extrae canción
-                        if (equalizerAnimator != null && !equalizerAnimator.isAnimating()) {
-                            equalizerAnimator.startAnimation();
-                        }
-                    }
-
-                    @Override
-                    public void onExtractionFailed(String error) {
-                        Log.w(TAG, "⚠ Error extrayendo canción: " + error);
-                    }
-                });
 
             // Iniciar animación del parlante
             mainHandler.post(animateSpeakerRunnable);
@@ -350,6 +332,25 @@ public class MainActivity extends AppCompatActivity {
 
                 // Si terminó, cancelamos timeout.
                 mainHandler.removeCallbacks(loadTimeoutRunnable);
+
+                // Iniciar extracción periódica de canciones AHORA que la página cargó
+                NowPlayingExtractor.startPeriodicExtraction(webView, new NowPlayingExtractor.NowPlayingCallback() {
+                    @Override
+                    public void onSongExtracted(String songTitle) {
+                        lastSongTitle = songTitle;
+                        updateNowPlayingDisplay(songTitle);
+
+                        // Iniciar animación del ecualizador cuando se extrae canción
+                        if (equalizerAnimator != null && !equalizerAnimator.isAnimating()) {
+                            equalizerAnimator.startAnimation();
+                        }
+                    }
+
+                    @Override
+                    public void onExtractionFailed(String error) {
+                        Log.w(TAG, "⚠ Error extrayendo canción: " + error);
+                    }
+                });
             }
 
             @Override
@@ -561,6 +562,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "→ onResume");
         cancelNowPlayingNotification();
+        stopRadioService();
         if (webView != null) webView.onResume();
     }
 
@@ -575,7 +577,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         Log.d(TAG, "→ onStop");
         showNowPlayingNotification();
+        startRadioService();
         super.onStop();
+    }
+
+    /** Inicia el servicio en primer plano para mantener el audio al apagar pantalla */
+    private void startRadioService() {
+        try {
+            String song = (lastSongTitle != null && !lastSongTitle.trim().isEmpty())
+                    ? lastSongTitle.trim() : "Alterna Radio FM 88.1";
+            Intent intent = new Intent(this, RadioForegroundService.class);
+            intent.setAction(RadioForegroundService.ACTION_START);
+            intent.putExtra(RadioForegroundService.EXTRA_SONG, song);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(intent);
+            } else {
+                startService(intent);
+            }
+            Log.d(TAG, "RadioForegroundService iniciado");
+        } catch (Throwable t) {
+            Log.w(TAG, "No se pudo iniciar RadioForegroundService: " + t.getMessage());
+        }
+    }
+
+    /** Detiene el servicio en primer plano cuando la app vuelve al frente */
+    private void stopRadioService() {
+        try {
+            Intent intent = new Intent(this, RadioForegroundService.class);
+            intent.setAction(RadioForegroundService.ACTION_STOP);
+            startService(intent);
+            Log.d(TAG, "RadioForegroundService detenido");
+        } catch (Throwable t) {
+            Log.w(TAG, "No se pudo detener RadioForegroundService: " + t.getMessage());
+        }
     }
 
     @Override
@@ -635,8 +669,8 @@ public class MainActivity extends AppCompatActivity {
 
         android.widget.ImageView textureOverlay = findViewById(R.id.speakerTextureOverlay);
 
-        if (!isCarouselVisible) {
-            // Cerrar: deslizar textura hacia arriba y desaparecer
+        if (isCarouselVisible) {
+            // ABRIR: Mostrar carousel - textura se desliza hacia arriba y desaparece
             if (textureOverlay != null) {
                 textureOverlay.animate()
                         .translationY(-textureOverlay.getHeight())
@@ -646,7 +680,7 @@ public class MainActivity extends AppCompatActivity {
                         .start();
             }
         } else {
-            // Abrir: volver la textura desde arriba
+            // CERRAR: Ocultar carousel - textura vuelve desde arriba
             if (textureOverlay != null) {
                 textureOverlay.setVisibility(View.VISIBLE);
                 textureOverlay.setTranslationY(-textureOverlay.getHeight());

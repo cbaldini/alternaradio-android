@@ -788,6 +788,19 @@ library {
   repo_index {
   }
 }
+library {
+  maven_library {
+    groupId: "jp.wasabeef"
+    artifactId: "glide-transformations"
+    version: "4.3.0"
+  }
+  digests {
+    sha256: "\316:W\350\004V\2428\n\a\263\034aVdJ\324\221\002$$\3378\244}\341\350\024\327F\326\343"
+  }
+  repo_index {
+    value: 1
+  }
+}
 library_dependencies {
   library_dep_index: 1
   library_dep_index: 2
@@ -1218,6 +1231,10 @@ library_dependencies {
   library_index: 64
   library_dep_index: 2
 }
+library_dependencies {
+  library_index: 65
+  library_dep_index: 60
+}
 module_dependencies {
   module_name: "base"
   dependency_index: 0
@@ -1225,6 +1242,7 @@ module_dependencies {
   dependency_index: 50
   dependency_index: 59
   dependency_index: 60
+  dependency_index: 65
 }
 repositories {
   maven_repo {

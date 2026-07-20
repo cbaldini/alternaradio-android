@@ -1,14 +1,15 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-36:12
-INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-36:12
-INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-36:12
-INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-36:12
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:2:1-44:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/5eea7df6aee6a0941665cadf5103cadf/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/67b3ce710ad5cdfad0a418897156b858/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/c98c29be5ca1fb5f3c7c1d605a99990b/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/afc75cc4f0559904a73bbf2e3112290b/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/57bec3d8833cb76cec517df60c493ad5/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [jp.wasabeef:glide-transformations:4.3.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/4abd6c07ff88e7b4554f30f4ac2877a9/transformed/jetified-glide-transformations-4.3.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.github.bumptech.glide:glide:4.16.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/826d94ad91a6f2dc1b24240616efd7de/transformed/jetified-glide-4.16.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.fragment:fragment:1.3.6] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/508c5c370c077d5eac4411b6a19a8d4c/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.8.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/75672267543d5285e1fcb189e97cc4ae/transformed/jetified-activity-1.8.0/AndroidManifest.xml:17:1-22:12
@@ -72,9 +73,17 @@ uses-permission#android.permission.POST_NOTIFICATIONS
 ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:7:5-77
 	android:name
 		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:7:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:8:5-77
+	android:name
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:8:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:9:5-92
+	android:name
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:9:22-89
 application
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:9:5-35:19
-INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:9:5-35:19
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:11:5-43:19
+INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:11:5-43:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/5eea7df6aee6a0941665cadf5103cadf/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/5eea7df6aee6a0941665cadf5103cadf/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/67b3ce710ad5cdfad0a418897156b858/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -96,61 +105,69 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/cristianbaldini/.gra
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/0bb87d37fba78a0adb42052df7e3da3f/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:14:9-35
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:16:9-35
 	android:label
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:12:9-41
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:14:9-41
 	android:hardwareAccelerated
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:16:9-43
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:18:9-43
 	android:roundIcon
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:13:9-54
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:15:9-54
 	android:icon
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:11:9-43
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:13:9-43
 	android:allowBackup
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:10:9-35
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:12:9-35
 	android:theme
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:17:9-40
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:19:9-40
 	android:usesCleartextTraffic
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:15:9-44
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:17:9-44
 activity#ar.alternaradio.app.MainActivity
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:19:9-34:20
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:21:9-36:20
 	android:launchMode
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:23:13-44
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:13-44
 	android:exported
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:22:13-36
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:24:13-36
 	android:configChanges
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:21:13-83
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:23:13-83
 	android:name
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:20:13-41
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:22:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:24:13-27:29
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:13-29:29
 action#android.intent.action.MAIN
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:17-69
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:25:25-66
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:17-77
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:28:17-77
 	android:name
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:26:27-74
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:28:27-74
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:radio.alterna.ar+data:scheme:https
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:28:13-33:29
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:13-35:29
 action#android.intent.action.VIEW
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:29:17-69
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:17-69
 	android:name
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:29:25-66
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:25-66
 category#android.intent.category.DEFAULT
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:17-76
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:17-76
 	android:name
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:30:27-73
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:17-78
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:33:17-78
 	android:name
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:31:27-75
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:33:27-75
 data
-ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:17-80
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:34:17-80
 	android:host
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:46-77
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:34:46-77
 	android:scheme
-		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:32:23-45
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:34:23-45
+service#ar.alternaradio.app.RadioForegroundService
+ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:38:9-41:61
+	android:exported
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:40:13-37
+	android:foregroundServiceType
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:41:13-58
+	android:name
+		ADDED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml:39:13-51
 uses-sdk
 INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/cristianbaldini/Proyectos/AlternaRadio/alternaradio-android/app/src/main/AndroidManifest.xml
@@ -165,6 +182,8 @@ MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/cristianbaldini/.gradle/
 MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/afc75cc4f0559904a73bbf2e3112290b/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/57bec3d8833cb76cec517df60c493ad5/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/57bec3d8833cb76cec517df60c493ad5/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [jp.wasabeef:glide-transformations:4.3.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/4abd6c07ff88e7b4554f30f4ac2877a9/transformed/jetified-glide-transformations-4.3.0/AndroidManifest.xml:5:5-7:41
+MERGED from [jp.wasabeef:glide-transformations:4.3.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/4abd6c07ff88e7b4554f30f4ac2877a9/transformed/jetified-glide-transformations-4.3.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.bumptech.glide:glide:4.16.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/826d94ad91a6f2dc1b24240616efd7de/transformed/jetified-glide-4.16.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.bumptech.glide:glide:4.16.0] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/826d94ad91a6f2dc1b24240616efd7de/transformed/jetified-glide-4.16.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.fragment:fragment:1.3.6] /Users/cristianbaldini/.gradle/caches/9.0.0/transforms/508c5c370c077d5eac4411b6a19a8d4c/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
